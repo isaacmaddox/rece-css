@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Isaac's CSS Library</title>
+    <style>
+        .disable>* {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Rece-css</h1>
+        <h3>A basic CSS library</h3>
+    </header>
+
+    <p class="dim italic">Project is still in early development, expect bugs such as unused links</p>
+
+    <h2>What is Rece-css?</h2>
+    <p>
+        This is a small CSS library meant to provide some basic styles for developers. If you don't like messing with
+        CSS or just don't have the time, this is the place for you!
+    </p>
+    <p>
+        This project was inspired by <a href="https://watercss.kognise.dev/" target="_blank">water.css</a>. I highly
+        recommend
+        checking that project out too.
+    </p>
+
+    <h3>Rece-css?</h3>
+    <p>
+        It's a corny name, but it's based of the idea that this library does not rely on classes, so it's like recess.
+    </p>
+
+    <h2>Versions</h2>
+    <table cellspacing="0">
+        <tr>
+            <th>Version Number</th>
+            <th>Date Released</th>
+            <th>Changelog</th>
+            <th>Download</th>
+        </tr>
+        <tr>
+            <td>Beta 1</td>
+            <td>3/25/22</td>
+            <td><a href="changelogs/beta_1.html">View changelog</a></td>
+            <td>Not Available</td>
+        </tr>
+    </table>
+
+    <h2>Usage</h2>
+    <p>
+        To use Rece-css in your project, you can <a href="#downloads">download the source files</a>, or include this tag
+        in the head of your project:
+    </p>
+    <code>
+        &lt;<span style="color: #2c67e3; font-family: monospace; font-size: 16px">link</span> <span style="color: dodgerblue; font-family: monospace; font-size: 16px">rel</span>=<span style="color: rgb(231, 124, 36); font-family: monospace; font-size: 16px">"stylesheet"</span> <span style="color: dodgerblue; font-family: monospace; font-size: 16px">href</span>=<span style="color: rgb(231, 124, 36); font-family: monospace; font-size: 16px">"css/styles.css"</span>&gt;
+    </code>
+    <p>
+        One of the main features of this library is that no classes are necessary. Some class options are available so
+        as to avoid restricting developers to my personal preferences. For a full documentation of this project, check
+        out the <a href="docs/">docs</a>.
+    </p>
+
+    <h2>FAQ</h2>
+    <h4>Can I use this in my own project?</h4>
+    <p>
+        Yes, of course! Attribution is appreciated but not required. If you happen to use this library, feel free to
+        send me a link to your page at <a href="mailto:isaac@isaacmaddox.net">isaac@isaacmaddox.net</a>!
+    </p>
+    <p>
+        Obviously, you can also tweak things in the stylesheet to fit your personal preference. That being said, please
+        avoid tweaking minor things and
+        then claiming the project as your own.
+    </p>
+
+    <h4>I found a bug! How do I let you know?</h4>
+    <p>
+        If you find a bug with this library, feel free to email me at <a
+            href="mailto:isaac@isaacmaddox.net">isaac@isaacmaddox.net</a> or fork the Github repo and patch the bug. I'm
+        also always open to feedback; if you find something that you think could be improved upon, please let me know!
+    </p>
+
+    <h2>Demonstrations</h2>
+    <p>
+        Below is a demonstration of all the elements supported in the library, sorted by alphabetical order. A more
+        detailed description is given in the <a href="docs/">docs.</a>
+    </p>
+    <h3 id="toc">Jump to Element</h3>
+    <ul>
+    </ul>
+
+    <h3 id="blockquotes">Blockquotes</h3>
+    <blockquote>
+        This is a blockquote element with some random long quote inside of it.
+        <cite>This is the citation</cite>
+    </blockquote>
+
+    <h3 id="buttons">Buttons</h3>
+    <button>This is a button</button>
+    <input type="button" value="Input with type=button">
+    <input type="submit" value="Input with type=submit">
+
+    <h3 id="code_blocks">Code Blocks</h3>
+    <code>
+        &lt;p&gt;This is a code block&lt;/code&gt;
+    </code>
+
+    <h3 id="dialogs">Dialogs</h3>
+    <button onclick="document.querySelector('dialog').showModal()">Open Dialog</button>
+    <dialog>
+        <h2>This is a dialog</h2>
+        <p>
+            You can close the dialog using <key>Esc</key>.
+        </p>
+    </dialog>
+
+    <h3 id="forms">Forms</h3>
+    <fieldset>
+        <legend>Fieldset</legend>
+        <form action="#">
+            <input type="text" placeholder="Username" />
+            <input type="password" placeholder="Password" />
+            <input type="submit" value="Submit">
+        </form>
+    </fieldset>
+
+    <h3 id="hyperlinks">Hyperlinks</h3>
+    <p>
+        <a href="https://isaacmaddox.net" target="_blank">This is a link to my website</a>
+    </p>
+
+    <h3 id="inputs">Inputs</h3>
+    <input type="text" placeholder="This is a basic input">
+    <input type="text" placeholder="This is a basic input" value="This one has text">
+
+    <h3 id="key">Key (custom element)</h3>
+    <p class="dim italic">
+        Note: this element will probably come with some accessibility issues, so please use sparsely. I only included it
+        because this library relies on the lack of classes.
+    </p>
+    <p>
+        To open the developer tools for your browser, use <key>F12</key> or <key>Ctrl</key>
+        <key>Shift</key>
+        <key>I</key>
+    </p>
+
+    <h3 id="navigation">Navigation</h3>
+    <p class="dim italic">Note: The overflow handling on nav elements is rudamentary because this library does not
+        utilize
+        JavaScript</p>
+    <nav>
+        <h2>Nav Title</h2>
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+        <button>Button</button>
+    </nav>
+
+    <h3 id="select">Select (Dropdowns)</h3>
+    <p class="dim italic">A custom element will likely be included in an optional version of this library which will use
+        some JavaScript. This is only because it is impossible to style the options for a dropdown in CSS.</p>
+    <select>
+        <optgroup label="Group 1">
+            <option>Option 1</option>
+            <option>Option 2</option>
+        </optgroup>
+        <optgroup label="Group 2">
+            <option>Option 3</option>
+            <option>Option 4</option>
+        </optgroup>
+        <option>Option 5</option>
+        <option>Option 6</option>
+    </select>
+
+    <h3 id="tables">Tables</h3>
+    <p class="dim italic">Note: it is recommended that you include <code class="inline">cellspacing="0"</code> on your
+        tables to avoid the gap between cells</p>
+    <table cellspacing="0">
+        <tr>
+            <th>Heading 1</th>
+            <th>Heading 2</th>
+            <th>Heading 3</th>
+        </tr>
+        <tr>
+            <td>1, 1</td>
+            <td>2, 1</td>
+            <td>3, 1</td>
+        </tr>
+        <tr>
+            <td>1, 2</td>
+            <td>2, 2</td>
+            <td>3, 2</td>
+        </tr>
+    </table>
+    <table cellspacing="0" class="vertical">
+        <tr>
+            <th>Heading 1</th>
+            <th>Heading 2</th>
+            <th>Heading 3</th>
+        </tr>
+        <tr>
+            <td>1, 1</td>
+            <td>2, 1</td>
+            <td>3, 1</td>
+        </tr>
+        <tr>
+            <td>1, 2</td>
+            <td>2, 2</td>
+            <td>3, 2</td>
+        </tr>
+    </table>
+
+    <h3 id="textarea">Textarea</h3>
+    <textarea>This is a &lt;textarea&gt;</textarea>
+
+    <h3 id="typography">Typography</h3>
+    <p>Sans Serif Font: <code class="inline">"Heebo", system-ui, Verdana, Geneva, Tahoma, sans-serif</code></p>
+    <p>Monospace Font: <code class="inline">"Roboto Mono", monospace</code></p>
+    <p>Font Sizing: <code class="inline">--default-text: 18px;<br/>
+        --large-text: calc(var(--default-text) + 1.2vw);</code></p>
+    <p>Regular Font &nbsp;|&nbsp; <strong>Bold Font</strong> &nbsp;|&nbsp; <em>Italic Font</em></p>
+
+    <h4>Headings</h4>
+    <p class="dim italic">Note: Headings also include margins, but they have been disabled for this section.</p>
+    <span class="disable">
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+    </span>
+
+    <footer>
+        All code and content is the property of me, Isaac Maddox. I give permission to anyone to use
+        this library if
+        they wish to.
+    </footer>
+
+    <script>
+        // All scripts are specific to the demo
+        $(document).ready(function () {
+            $("h3").each(function () {
+                if ($(this).prop('id') !== "" && $(this).prop('id') !== "toc") {
+                    var l = $(this).prop('id').replace(/_/g, " ");
+                    $("ul").append(`<li><a href="#${l}" style="text-transform: capitalize;">${l}</a></li>`);
+                    $(this).append('&nbsp;&nbsp;&nbsp;<a href="#toc">Contents</a>');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
