@@ -64,12 +64,17 @@
   background: var(--selection);
 }
 
-@keyframes flash {
-  45% {
-    background: var(--target);
-  }
-  55% {
-    background: var(--target);
+::-webkit-scrollbar {
+  background: var(--background-body);
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+
+  &:hover {
+    background: var(--text);
   }
 }
 
@@ -80,14 +85,14 @@ html {
   scroll-padding-top: 100px;
 }
 html {
-  padding: 32px;
+  padding: 24px;
 }
 body {
   width: clamp(1rem, 100%, 1000px);
   margin: 0 auto;
 }
 
-// Items are ordered by the alphabet
+// Items are roughly ordered by the alphabet
 a {
   color: var(--link);
   text-decoration: none;
@@ -106,7 +111,7 @@ blockquote {
   margin: calc(var(--spacing) * 2) var(--spacing);
   background: var(--background);
   width: fit-content;
-  max-width: 85%;
+  max-width: 95%;
   padding: var(--spacing);
   border-left: 3px solid var(--text-muted);
   font-weight: 500;
@@ -144,20 +149,21 @@ input[type="submit"] {
 
 code {
   display: block;
-  margin: calc(var(--spacing) * 2) var(--spacing);
+  margin: calc(var(--spacing) * 2) min(1vw, var(--spacing));
   background: var(--background);
   width: fit-content;
-  max-width: 85%;
+  max-width: 95%;
   padding: calc(var(--spacing) / 2);
   font-family: "Roboto Mono", monospace;
   color: var(--text-muted);
   font-size: 16px;
   font-style: normal;
+  word-wrap: break-word;
 
   &.inline {
     display: inline-block;
     padding-block: calc(var(--spacing) / 4);
-    margin: 0 1rem;
+    margin: 0 1ch;
     vertical-align: middle;
   }
 }
@@ -166,7 +172,7 @@ dialog {
   border: none;
   max-width: min(600px, calc(100% - 64px));
   max-height: calc(100% - 64px);
-  padding: var(--spacing);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 1.5);
   box-shadow: 0px 5px 3rem #0002;
   background: var(--background-body);
 
@@ -181,6 +187,27 @@ dialog {
 
   & p:last-child {
     margin-bottom: 0;
+  }
+
+  button:first-child {
+    position: absolute;
+    top: var(--spacing);
+    right: var(--spacing);
+    padding: 0;
+    background: var(--background-body);
+    box-shadow: none;
+
+    &:active {
+      transform: none;
+    }
+
+    &:hover {
+      color: var(--text-bright);
+    }
+
+    & + h2 {
+      margin: 0;
+    }
   }
 }
 
@@ -203,7 +230,7 @@ fieldset {
 
 footer {
   width: 100%;
-  padding: calc(var(--spacing) / 2) var(--spacing);
+  padding: calc(var(--spacing) / 2) 0;
   border-top: 2px solid var(--background);
   margin-top: var(--spacing);
 }
@@ -238,7 +265,7 @@ form {
 
 @for $i from 1 through 6 {
   h#{$i} {
-    font-size: calc(var(--large-text) / ($i * 0.9) + 0.85rem);
+    font-size: calc(var(--large-text) / ($i * 0.8) + 0.95rem);
     font-weight: max(calc(70 * (8 - $i)), 400);
     margin-block: calc(32px / ($i * 0.3));
     @if ($i >= 3) {
@@ -361,6 +388,14 @@ select {
   cursor: pointer;
   color: var(--text);
 
+  &:hover {
+    background: var(--background-darker);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
   optgroup {
     color: var(--text-bright);
     font-weight: 500;
@@ -371,18 +406,29 @@ strong {
   font-weight: 500;
 }
 
+.table_wrap {
+  overflow: auto;
+}
+
 table {
   border: 1px solid var(--background);
   width: 100%;
   margin-block: var(--spacing);
+  max-width: 100%;
+  overflow-x: hidden;
 
   tr:nth-of-type(odd):not(:first-child) td {
     font-weight: 500;
+
+    & * {
+      font-weight: 500;
+    }
   }
 
   th {
     font-weight: 700;
-    padding-block: 16px;
+    padding: 16px;
+    white-space: nowrap;
   }
 
   td {
@@ -413,5 +459,24 @@ textarea {
   &:focus {
     background: var(--background-darker);
     color: var(--text-bright);
+  }
+}
+
+@media (max-width: 500px) {
+  code,
+  blockquote {
+    margin: var(--spacing) auto;
+  }
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-size: calc(var(--large-text) / ($i * 0.75) + 0.85rem);
+      font-weight: max(calc(70 * (8 - $i)), 400);
+      margin-block: calc(32px / ($i * 0.3));
+      @if ($i >= 3) {
+        color: var(--text);
+      } @else {
+        color: var(--text-bright);
+      }
+    }
   }
 }

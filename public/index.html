@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="dark-theme">
         <h1>Rece-css</h1>
         <h3>A basic CSS library</h3>
     </header>
@@ -40,20 +40,30 @@
     </p>
 
     <h2>Versions</h2>
-    <table cellspacing="0">
-        <tr>
-            <th>Version Number</th>
-            <th>Date Released</th>
-            <th>Changelog</th>
-            <th>Download</th>
-        </tr>
-        <tr>
-            <td>Beta 1</td>
-            <td>3/25/22</td>
-            <td><a href="changelogs/beta_1.html">View changelog</a></td>
-            <td>Not Available</td>
-        </tr>
-    </table>
+    <div class="table_wrap">
+        <table cellspacing="0">
+            <tr>
+                <th>Version Number</th>
+                <th>Date Released</th>
+                <th>Changelog</th>
+                <th>Download</th>
+            </tr>
+            <tr>
+                <td>Beta 1</td>
+                <td>3/25/22</td>
+                <td><a href="changelogs/beta_1.html">View changelog</a></td>
+                <td>Not Available</td>
+            </tr>
+            <tr>
+                <td>Beta 1.1</td>
+                <td>3/25/22</td>
+                <td><a href="changelogs/beta_1-1.html">View changelog</a></td>
+                <td><a href="https://github.com/isaacmaddox/rece-css/blob/main/src/sass/styles.css">Download
+                        (Github)</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 
     <h2>Usage</h2>
     <p>
@@ -61,7 +71,7 @@
         in the head of your project:
     </p>
     <code>
-        &lt;<span style="color: #2c67e3; font-family: monospace; font-size: 16px">link</span> <span style="color: dodgerblue; font-family: monospace; font-size: 16px">rel</span>=<span style="color: rgb(231, 124, 36); font-family: monospace; font-size: 16px">"stylesheet"</span> <span style="color: dodgerblue; font-family: monospace; font-size: 16px">href</span>=<span style="color: rgb(231, 124, 36); font-family: monospace; font-size: 16px">"css/styles.css"</span>&gt;
+        &lt;<span style="color: #2c67e3; font-family: monospace; font-size: 16px">link</span> <span style="color: dodgerblue; font-family: monospace; font-size: 16px">rel</span>=<span style="color: rgb(231, 124, 36); font-family: monospace; font-size: 16px">"stylesheet"</span> <span style="color: dodgerblue; font-family: monospace; font-size: 16px">href</span>=<span style="color: rgb(231, 124, 36); font-family: monospace; font-size: 16px">"https://raw.githubusercontent.com/isaacmaddox/rece-css/main/src/sass/styles.css"</span>&gt;
     </code>
     <p>
         One of the main features of this library is that no classes are necessary. Some class options are available so
@@ -110,12 +120,13 @@
 
     <h3 id="code_blocks">Code Blocks</h3>
     <code>
-        &lt;p&gt;This is a code block&lt;/code&gt;
+        &lt;p&gt;This is a code block&lt;/p&gt;
     </code>
 
     <h3 id="dialogs">Dialogs</h3>
     <button onclick="document.querySelector('dialog').showModal()">Open Dialog</button>
     <dialog>
+        <button onclick="document.querySelector('dialog').close()">Close</button>
         <h2>This is a dialog</h2>
         <p>
             You can close the dialog using <key>Esc</key>.
@@ -183,6 +194,10 @@
     <h3 id="tables">Tables</h3>
     <p class="dim italic">Note: it is recommended that you include <code class="inline">cellspacing="0"</code> on your
         tables to avoid the gap between cells</p>
+    <p class="dim italic">Additionally, I recommend wrapping long tables in <code
+            class="inline">&lt;<span style="color: #2c67e3; font-family: monospace; font-size: 16px">div</span> <span style="color: dodgerblue; font-family: monospace; font-size: 16px">class</span>=<span style="color: rgb(231, 124, 36); font-family: monospace; font-size: 16px">"table-wrap"</span>&gt;</code>.
+        This will handle the overflow of the table so that the
+        actual body does not scroll horizontally.</p>
     <table cellspacing="0">
         <tr>
             <th>Heading 1</th>
@@ -250,8 +265,9 @@
         $(document).ready(function () {
             $("h3").each(function () {
                 if ($(this).prop('id') !== "" && $(this).prop('id') !== "toc") {
-                    var l = $(this).prop('id').replace(/_/g, " ");
-                    $("ul").append(`<li><a href="#${l}" style="text-transform: capitalize;">${l}</a></li>`);
+                    var l = $(this).prop('id');
+                    var t = $(this).prop('id').replace(/_/g, " ");
+                    $("ul").append(`<li><a href="#${l}" style="text-transform: capitalize;">${t}</a></li>`);
                     $(this).append('&nbsp;&nbsp;&nbsp;<a href="#toc">Contents</a>');
                 }
             });

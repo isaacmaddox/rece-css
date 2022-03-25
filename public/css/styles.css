@@ -112,22 +112,20 @@ input, button, textarea, select {
   background: var(--selection);
 }
 
-@-webkit-keyframes flash {
-  45% {
-    background: var(--target);
-  }
-  55% {
-    background: var(--target);
-  }
+::-webkit-scrollbar {
+  background: var(--background-body);
+  width: 10px;
+  height: 10px;
 }
-@keyframes flash {
-  45% {
-    background: var(--target);
-  }
-  55% {
-    background: var(--target);
-  }
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
 }
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text);
+}
+
 body, html {
   background-color: var(--background-body);
   scroll-behavior: smooth;
@@ -135,7 +133,7 @@ body, html {
 }
 
 html {
-  padding: 32px;
+  padding: 24px;
 }
 
 body {
@@ -163,7 +161,7 @@ blockquote {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  max-width: 85%;
+  max-width: 95%;
   padding: var(--spacing);
   border-left: 3px solid var(--text-muted);
   font-weight: 500;
@@ -199,23 +197,24 @@ button:active, input[type=button]:active, input[type=submit]:active {
 
 code {
   display: block;
-  margin: calc(var(--spacing) * 2) var(--spacing);
+  margin: calc(var(--spacing) * 2) min(1vw, var(--spacing));
   background: var(--background);
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  max-width: 85%;
+  max-width: 95%;
   padding: calc(var(--spacing) / 2);
   font-family: "Roboto Mono", monospace;
   color: var(--text-muted);
   font-size: 16px;
   font-style: normal;
+  word-wrap: break-word;
 }
 
 code.inline {
   display: inline-block;
   padding-block: calc(var(--spacing) / 4);
-  margin: 0 1rem;
+  margin: 0 1ch;
   vertical-align: middle;
 }
 
@@ -223,7 +222,7 @@ dialog {
   border: none;
   max-width: min(600px, 100% - 64px);
   max-height: calc(100% - 64px);
-  padding: var(--spacing);
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 1.5);
   box-shadow: 0px 5px 3rem #0002;
   background: var(--background-body);
 }
@@ -248,6 +247,27 @@ dialog p:last-child {
   margin-bottom: 0;
 }
 
+dialog button:first-child {
+  position: absolute;
+  top: var(--spacing);
+  right: var(--spacing);
+  padding: 0;
+  background: var(--background-body);
+  box-shadow: none;
+}
+
+dialog button:first-child:active {
+  transform: none;
+}
+
+dialog button:first-child:hover {
+  color: var(--text-bright);
+}
+
+dialog button:first-child + h2 {
+  margin: 0;
+}
+
 @media (prefers-color-scheme: dark) {
   dialog::-webkit-backdrop {
     background: #fff3;
@@ -269,7 +289,7 @@ fieldset legend {
 
 footer {
   width: 100%;
-  padding: calc(var(--spacing) / 2) var(--spacing);
+  padding: calc(var(--spacing) / 2) 0;
   border-top: 2px solid var(--background);
   margin-top: var(--spacing);
 }
@@ -297,42 +317,42 @@ form button, form input[type=button], form input[type=submit] {
 }
 
 h1 {
-  font-size: calc(var(--large-text) / 0.9 + 0.85rem);
+  font-size: calc(var(--large-text) / 0.8 + 0.95rem);
   font-weight: 490;
   margin-block: 106.6666666667px;
   color: var(--text-bright);
 }
 
 h2 {
-  font-size: calc(var(--large-text) / 1.8 + 0.85rem);
+  font-size: calc(var(--large-text) / 1.6 + 0.95rem);
   font-weight: 420;
   margin-block: 53.3333333333px;
   color: var(--text-bright);
 }
 
 h3 {
-  font-size: calc(var(--large-text) / 2.7 + 0.85rem);
+  font-size: calc(var(--large-text) / 2.4 + 0.95rem);
   font-weight: 400;
   margin-block: 35.5555555556px;
   color: var(--text);
 }
 
 h4 {
-  font-size: calc(var(--large-text) / 3.6 + 0.85rem);
+  font-size: calc(var(--large-text) / 3.2 + 0.95rem);
   font-weight: 400;
   margin-block: 26.6666666667px;
   color: var(--text);
 }
 
 h5 {
-  font-size: calc(var(--large-text) / 4.5 + 0.85rem);
+  font-size: calc(var(--large-text) / 4 + 0.95rem);
   font-weight: 400;
   margin-block: 21.3333333333px;
   color: var(--text);
 }
 
 h6 {
-  font-size: calc(var(--large-text) / 5.4 + 0.85rem);
+  font-size: calc(var(--large-text) / 4.8 + 0.95rem);
   font-weight: 400;
   margin-block: 17.7777777778px;
   color: var(--text);
@@ -457,6 +477,14 @@ select {
   color: var(--text);
 }
 
+select:hover {
+  background: var(--background-darker);
+}
+
+select:active {
+  transform: translateY(1px);
+}
+
 select optgroup {
   color: var(--text-bright);
   font-weight: 500;
@@ -466,19 +494,30 @@ strong {
   font-weight: 500;
 }
 
+.table_wrap {
+  overflow: auto;
+}
+
 table {
   border: 1px solid var(--background);
   width: 100%;
   margin-block: var(--spacing);
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 table tr:nth-of-type(odd):not(:first-child) td {
   font-weight: 500;
 }
 
+table tr:nth-of-type(odd):not(:first-child) td * {
+  font-weight: 500;
+}
+
 table th {
   font-weight: 700;
-  padding-block: 16px;
+  padding: 16px;
+  white-space: nowrap;
 }
 
 table td {
@@ -507,4 +546,52 @@ textarea {
 textarea:focus {
   background: var(--background-darker);
   color: var(--text-bright);
+}
+
+@media (max-width: 500px) {
+  code, blockquote {
+    margin: var(--spacing) auto;
+  }
+
+  h1 {
+    font-size: calc(var(--large-text) / 0.75 + 0.85rem);
+    font-weight: 490;
+    margin-block: 106.6666666667px;
+    color: var(--text-bright);
+  }
+
+  h2 {
+    font-size: calc(var(--large-text) / 1.5 + 0.85rem);
+    font-weight: 420;
+    margin-block: 53.3333333333px;
+    color: var(--text-bright);
+  }
+
+  h3 {
+    font-size: calc(var(--large-text) / 2.25 + 0.85rem);
+    font-weight: 400;
+    margin-block: 35.5555555556px;
+    color: var(--text);
+  }
+
+  h4 {
+    font-size: calc(var(--large-text) / 3 + 0.85rem);
+    font-weight: 400;
+    margin-block: 26.6666666667px;
+    color: var(--text);
+  }
+
+  h5 {
+    font-size: calc(var(--large-text) / 3.75 + 0.85rem);
+    font-weight: 400;
+    margin-block: 21.3333333333px;
+    color: var(--text);
+  }
+
+  h6 {
+    font-size: calc(var(--large-text) / 4.5 + 0.85rem);
+    font-weight: 400;
+    margin-block: 17.7777777778px;
+    color: var(--text);
+  }
 }
