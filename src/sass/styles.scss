@@ -47,7 +47,7 @@
   transition: all var(--duration) var(--easing);
 
   &:focus {
-    box-shadow: 0px 0px 3px 2px #20add8aa;
+    box-shadow: 0px 0px 6px 1px #20add8aa;
     outline: none;
   }
 
@@ -299,7 +299,6 @@ input {
   background: var(--background);
   display: block;
   margin-block: 1rem;
-  min-width: min(400px, 100%);
 
   &:focus {
     background: var(--background-darker);
@@ -331,15 +330,17 @@ key {
 
 nav {
   width: 100%;
-  background: var(--background-body);
+  background: var(--background-background);
   display: flex;
   overflow-x: auto;
   align-items: center;
   position: relative;
   white-space: nowrap;
+  padding: calc(var(--spacing) / 2) 0;
 
   h2 {
     font-size: 1.5rem;
+    margin-block: 0px;
     margin-right: calc(var(--spacing) * 2);
     background: var(--background-body);
     position: sticky;
@@ -406,10 +407,6 @@ strong {
   font-weight: 500;
 }
 
-.table_wrap {
-  overflow: auto;
-}
-
 table {
   border: 1px solid var(--background);
   width: 100%;
@@ -443,6 +440,16 @@ table {
 
   &:not(.vertical) tr:nth-of-type(odd) {
     background: var(--background);
+  }
+}
+
+.table_wrap {
+  margin-block: var(--spacing);
+  overflow: auto;
+  max-height: 65vh;
+
+  & table {
+    margin-block: 0;
   }
 }
 
