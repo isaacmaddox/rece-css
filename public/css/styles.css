@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Public+Sans:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap";
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -51,9 +51,9 @@ input, button, textarea, select {
 :root {
   --background-body: #f6f6f6;
   --background: #e6e6e6;
-  --background-darker: #e0e0e0;
+  --background-darker: #e2e2e2;
   --background-transparent: #e6e6e6aa;
-  --selection: #0002;
+  --selection: #0001;
   --text: #333;
   --text-bright: #000;
   --text-muted: #555;
@@ -63,16 +63,21 @@ input, button, textarea, select {
   --duration: 0.1s;
   --easing: ease;
   --placeholder: #888;
+  --shadow: #0001;
+  --focus: #20add8aa;
   --spacing: 1.75rem;
+  --br: 0.25rem;
+  --primary: #2c67e3;
+  --clr-primary: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background-body: #181818;
     --background: #242424;
-    --background-darker: #313131;
+    --background-darker: #282828;
     --background-transparent: #242424aa;
-    --selection: #fff2;
+    --selection: #fff1;
     --text: #ccc;
     --text-bright: #fff;
     --text-muted: #999;
@@ -80,10 +85,12 @@ input, button, textarea, select {
     --duration: 0.2s;
     --easing: ease;
     --placeholder: #aaa;
+    --shadow: #0005;
+    --focus: #2993b3aa;
   }
 }
 * {
-  font-family: "Heebo", system-ui, Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Merriweather Sans", system-ui, Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 400;
   font-size: var(--default-text);
   color: var(--text);
@@ -92,7 +99,7 @@ input, button, textarea, select {
 }
 
 *:focus {
-  box-shadow: 0px 0px 6px 1px #20add8aa;
+  box-shadow: 0px 0px 0px 1px var(--focus);
   outline: none;
 }
 
@@ -102,6 +109,97 @@ input, button, textarea, select {
 
 *.italic {
   font-style: italic;
+}
+
+*.shadow {
+  box-shadow: 0px 3px 1rem var(--shadow);
+}
+
+*.shadow:focus {
+  box-shadow: 0px 3px 1rem var(--shadow), 0px 0px 0px 1px var(--focus);
+}
+
+*.bold {
+  font-weight: 500;
+}
+
+*.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+*.font-sans {
+  font-family: "Merriweather Sans", system-ui, Verdana, Geneva, Tahoma, sans-serif !important;
+}
+
+*.font-mono {
+  font-family: "Roboto Mono", monospace !important;
+}
+
+*.color-bright {
+  color: var(--text-bright) !important;
+}
+
+*.color-muted {
+  color: var(--text-muted) !important;
+}
+
+*.color-default {
+  color: var(--text) !important;
+}
+
+*.fw-light {
+  font-weight: 300 !important;
+}
+
+*.fw-normal {
+  font-weight: 400 !important;
+}
+
+*.fw-heavy {
+  font-weight: 600 !important;
+}
+
+*.margin-top {
+  margin-top: var(--spacing);
+}
+
+*.margin-top-2x {
+  margin-top: calc(var(--spacing) * 2);
+}
+
+*.margin-bottom {
+  margin-bottom: var(--spacing);
+}
+
+*.margin-bottom-2x {
+  margin-bottom: calc(var(--spacing) * 2);
+}
+
+*.margin-left {
+  margin-left: var(--spacing);
+}
+
+*.margin-left-2x {
+  margin-left: calc(var(--spacing) * 2);
+}
+
+*.margin-right {
+  margin-right: var(--spacing);
+}
+
+*.margin-right-2x {
+  margin-right: calc(var(--spacing) * 2);
+}
+
+*.margin {
+  margin: var(--spacing);
+}
+
+*.margin-2x {
+  margin: calc(var(--spacing) * 2);
 }
 
 ::-moz-selection {
@@ -147,7 +245,7 @@ a {
   display: inline-block;
 }
 
-a:hover {
+a:hover, a:focus {
   text-decoration: underline;
 }
 
@@ -179,14 +277,16 @@ blockquote cite::before {
 }
 
 button, input[type=button], input[type=submit] {
-  padding: calc(var(--spacing) / 2) var(--spacing);
+  padding: calc(var(--spacing) / 3) calc(var(--spacing) / 1.5);
   border: none;
   cursor: pointer;
   background: var(--background);
   outline: none;
+  border-radius: var(--br);
+  color: var(--text);
 }
 
-button:hover, input[type=button]:hover, input[type=submit]:hover {
+button:hover, button:focus, input[type=button]:hover, input[type=button]:focus, input[type=submit]:hover, input[type=submit]:focus {
   background: var(--background-darker);
   color: var(--text-bright);
 }
@@ -225,6 +325,7 @@ dialog {
   padding: calc(var(--spacing) * 2) calc(var(--spacing) * 1.5);
   box-shadow: 0px 5px 3rem #0002;
   background: var(--background-body);
+  border-radius: var(--br);
 }
 
 dialog::-webkit-backdrop {
@@ -260,7 +361,7 @@ dialog button:first-child:active {
   transform: none;
 }
 
-dialog button:first-child:hover {
+dialog button:first-child:hover, dialog button:first-child:focus {
   color: var(--text-bright);
 }
 
@@ -281,6 +382,7 @@ fieldset {
   width: clamp(1px, 500px, 100%);
   border: 1px solid var(--placeholder);
   padding: var(--spacing);
+  border-radius: var(--br);
 }
 
 fieldset legend {
@@ -318,21 +420,21 @@ form button, form input[type=button], form input[type=submit] {
 
 h1 {
   font-size: calc(var(--large-text) / 0.8 + 0.95rem);
-  font-weight: 490;
+  font-weight: 581;
   margin-block: 106.6666666667px;
   color: var(--text-bright);
 }
 
 h2 {
   font-size: calc(var(--large-text) / 1.6 + 0.95rem);
-  font-weight: 420;
+  font-weight: 498;
   margin-block: 53.3333333333px;
   color: var(--text-bright);
 }
 
 h3 {
   font-size: calc(var(--large-text) / 2.4 + 0.95rem);
-  font-weight: 400;
+  font-weight: 415;
   margin-block: 35.5555555556px;
   color: var(--text);
 }
@@ -377,8 +479,9 @@ input {
   padding: calc(var(--spacing) / 2) var(--spacing);
   border: 1px solid var(--background-darker);
   background: var(--background);
-  display: block;
+  display: inline-block;
   margin-block: 1rem;
+  border-radius: var(--br);
 }
 
 input:focus {
@@ -471,14 +574,15 @@ p {
 }
 
 select {
-  padding: calc(var(--spacing) / 2) var(--spacing);
+  padding: calc(var(--spacing) / 3) calc(var(--spacing) / 1.75);
   background: var(--background);
   border: none;
   cursor: pointer;
   color: var(--text);
+  border-radius: var(--br);
 }
 
-select:hover {
+select:hover, select:focus {
   background: var(--background-darker);
 }
 
@@ -501,6 +605,7 @@ table {
   margin-block: var(--spacing);
   max-width: 100%;
   overflow-x: hidden;
+  border-radius: var(--br);
 }
 
 table tr:nth-of-type(odd):not(:first-child) td {
@@ -515,6 +620,7 @@ table th {
   font-weight: 700;
   padding: 16px;
   white-space: nowrap;
+  color: var(--text-bright);
 }
 
 table td {
@@ -548,6 +654,7 @@ textarea {
   padding: 16px;
   transition: box-shadow var(--duration) var(--easing), background var(--duration) var(--easing);
   max-width: 100%;
+  border-radius: var(--br);
 }
 
 textarea:focus {

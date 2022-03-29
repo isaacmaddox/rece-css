@@ -1,13 +1,13 @@
 @use "./reset.scss";
-@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap");
 // https://piccalil.li/blog/a-modern-css-reset/
 
 :root {
   --background-body: #f6f6f6;
   --background: #e6e6e6;
-  --background-darker: #e0e0e0;
+  --background-darker: #e2e2e2;
   --background-transparent: #e6e6e6aa;
-  --selection: #0002;
+  --selection: #0001;
   --text: #333;
   --text-bright: #000;
   --text-muted: #555;
@@ -17,17 +17,24 @@
   --duration: 0.1s;
   --easing: ease;
   --placeholder: #888;
+  --shadow: #0001;
+  --focus: #20add8aa;
 
   --spacing: 1.75rem;
+  --br: 0.25rem;
+
+  // Custom colors
+  --primary: #2c67e3;
+  --clr-primary: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background-body: #181818;
     --background: #242424;
-    --background-darker: #313131;
+    --background-darker: #282828; //#313131
     --background-transparent: #242424aa;
-    --selection: #fff2;
+    --selection: #fff1;
     --text: #ccc;
     --text-bright: #fff;
     --text-muted: #999;
@@ -35,11 +42,14 @@
     --duration: 0.2s;
     --easing: ease;
     --placeholder: #aaa;
+    --shadow: #0005;
+    --focus: #2993b3aa;
   }
 }
 
 * {
-  font-family: "Heebo", system-ui, Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Merriweather Sans", system-ui, Verdana, Geneva, Tahoma,
+    sans-serif;
   font-weight: 400;
   font-size: var(--default-text);
   color: var(--text);
@@ -47,9 +57,11 @@
   transition: all var(--duration) var(--easing);
 
   &:focus {
-    box-shadow: 0px 0px 6px 1px #20add8aa;
+    box-shadow: 0px 0px 0px 1px var(--focus);
     outline: none;
   }
+
+  // Customization classes
 
   &.dim {
     color: var(--text-muted);
@@ -57,6 +69,91 @@
 
   &.italic {
     font-style: italic;
+  }
+
+  &.shadow {
+    box-shadow: 0px 3px 1rem var(--shadow);
+
+    &:focus {
+      box-shadow: 0px 3px 1rem var(--shadow), 0px 0px 0px 1px var(--focus);
+    }
+  }
+
+  &.bold {
+    font-weight: 500;
+  }
+
+  &.no-select {
+    user-select: none;
+  }
+
+  &.font-sans {
+    font-family: "Merriweather Sans", system-ui, Verdana, Geneva, Tahoma,
+      sans-serif !important;
+  }
+
+  &.font-mono {
+    font-family: "Roboto Mono", monospace !important;
+  }
+
+  &.color-bright {
+    color: var(--text-bright) !important;
+  }
+
+  &.color-muted {
+    color: var(--text-muted) !important;
+  }
+
+  &.color-default {
+    color: var(--text) !important;
+  }
+
+  &.fw-light {
+    font-weight: 300 !important;
+  }
+
+  &.fw-normal {
+    font-weight: 400 !important;
+  }
+
+  &.fw-heavy {
+    font-weight: 600 !important;
+  }
+
+  &.margin-top {
+    margin-top: var(--spacing);
+
+    &-2x {
+      margin-top: calc(var(--spacing) * 2);
+    }
+  }
+  &.margin-bottom {
+    margin-bottom: var(--spacing);
+
+    &-2x {
+      margin-bottom: calc(var(--spacing) * 2);
+    }
+  }
+  &.margin-left {
+    margin-left: var(--spacing);
+
+    &-2x {
+      margin-left: calc(var(--spacing) * 2);
+    }
+  }
+  &.margin-right {
+    margin-right: var(--spacing);
+
+    &-2x {
+      margin-right: calc(var(--spacing) * 2);
+    }
+  }
+  &.margin {
+    margin: var(--spacing);
+
+    &-2x {
+      margin: calc(var(--spacing) * 2);
+    }
   }
 }
 
@@ -98,7 +195,8 @@ a {
   text-decoration: none;
   display: inline-block;
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 
@@ -131,13 +229,16 @@ blockquote {
 button,
 input[type="button"],
 input[type="submit"] {
-  padding: calc(var(--spacing) / 2) var(--spacing);
+  padding: calc(var(--spacing) / 3) calc(var(--spacing) / 1.5);
   border: none;
   cursor: pointer;
   background: var(--background);
   outline: none;
+  border-radius: var(--br);
+  color: var(--text);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: var(--background-darker);
     color: var(--text-bright);
   }
@@ -175,6 +276,7 @@ dialog {
   padding: calc(var(--spacing) * 2) calc(var(--spacing) * 1.5);
   box-shadow: 0px 5px 3rem #0002;
   background: var(--background-body);
+  border-radius: var(--br);
 
   &::backdrop {
     background: #0003;
@@ -201,7 +303,8 @@ dialog {
       transform: none;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: var(--text-bright);
     }
 
@@ -221,7 +324,7 @@ fieldset {
   width: clamp(1px, 500px, 100%);
   border: 1px solid var(--placeholder);
   padding: var(--spacing);
-  // width: fit-content;
+  border-radius: var(--br);
 
   & legend {
     padding-inline: calc(var(--spacing) / 2);
@@ -266,7 +369,7 @@ form {
 @for $i from 1 through 6 {
   h#{$i} {
     font-size: calc(var(--large-text) / ($i * 0.8) + 0.95rem);
-    font-weight: max(calc(70 * (8 - $i)), 400);
+    font-weight: max(calc(83 * (8 - $i)), 400);
     margin-block: calc(32px / ($i * 0.3));
     @if ($i >= 3) {
       color: var(--text);
@@ -297,8 +400,9 @@ input {
   padding: calc(var(--spacing) / 2) var(--spacing);
   border: 1px solid var(--background-darker);
   background: var(--background);
-  display: block;
+  display: inline-block;
   margin-block: 1rem;
+  border-radius: var(--br);
 
   &:focus {
     background: var(--background-darker);
@@ -383,13 +487,15 @@ p {
 }
 
 select {
-  padding: calc(var(--spacing) / 2) var(--spacing);
+  padding: calc(var(--spacing) / 3) calc(var(--spacing) / 1.75);
   background: var(--background);
   border: none;
   cursor: pointer;
   color: var(--text);
+  border-radius: var(--br);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: var(--background-darker);
   }
 
@@ -413,6 +519,7 @@ table {
   margin-block: var(--spacing);
   max-width: 100%;
   overflow-x: hidden;
+  border-radius: var(--br);
 
   tr:nth-of-type(odd):not(:first-child) td {
     font-weight: 500;
@@ -426,6 +533,7 @@ table {
     font-weight: 700;
     padding: 16px;
     white-space: nowrap;
+    color: var(--text-bright);
   }
 
   td {
@@ -462,6 +570,7 @@ textarea {
   transition: box-shadow var(--duration) var(--easing),
     background var(--duration) var(--easing);
   max-width: 100%;
+  border-radius: var(--br);
 
   &:focus {
     background: var(--background-darker);

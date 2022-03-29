@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" href="logo.png">
     <title>Isaac's CSS Library</title>
     <style>
         .disable>* {
@@ -21,7 +22,7 @@
         <h3>A basic CSS library</h3>
     </header>
 
-    <p class="dim italic">Project is still in early development, expect bugs such as unused links</p>
+    <p class="dim italic margin-top-2x">Project is still in early development, expect bugs such as unused links</p>
 
     <h2>What is Rece-css?</h2>
     <p>
@@ -41,7 +42,7 @@
 
     <h2>Versions</h2>
     <div class="table_wrap">
-        <table cellspacing="0">
+        <table cellspacing="0" class="highlight">
             <tr>
                 <th>Version Number</th>
                 <th>Date Released</th>
@@ -65,6 +66,12 @@
                 <td>Beta 1.2</td>
                 <td>3/26/22</td>
                 <td><a href="changelogs/beta_1-2.html">View changelog</a></td>
+                <td>Not Available</td>
+            </tr>
+            <tr>
+                <td>Release 1</td>
+                <td>3/28/22</td>
+                <td><a href="changelogs/release_1.html">View changelog</a></td>
                 <td><a href="https://github.com/isaacmaddox/rece-css/blob/main/public/css/styles.css">Download
                         (Github)</a>
                 </td>
@@ -122,6 +129,7 @@
 
     <h3 id="buttons">Buttons</h3>
     <button>This is a button</button>
+    <button class="shadow">Shadow</button>
     <input type="button" value="Input with type=button">
     <input type="submit" value="Input with type=submit">
 
@@ -244,7 +252,8 @@
     <textarea>This is a &lt;textarea&gt;</textarea>
 
     <h3 id="typography">Typography</h3>
-    <p>Sans Serif Font: <code class="inline">"Heebo", system-ui, Verdana, Geneva, Tahoma, sans-serif</code></p>
+    <p>Sans Serif Font: <code class="inline">"Merriweather Sans", system-ui, Verdana, Geneva, Tahoma, sans-serif</code>
+    </p>
     <p>Monospace Font: <code class="inline">"Roboto Mono", monospace</code></p>
     <p>Font Sizing: <code class="inline">--default-text: 18px;<br/>
         --large-text: calc(var(--default-text) + 1.2vw);</code></p>
